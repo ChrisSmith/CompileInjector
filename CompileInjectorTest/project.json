@@ -1,0 +1,31 @@
+{
+  "version": "1.0.0-*",
+  "description": "CompileInjector Console Application",
+  "authors": [ "your name" ],
+  "tags": [ "" ],
+  "projectUrl": "",
+  "licenseUrl": "",
+
+  "dependencies": {
+    "Microsoft.CodeAnalysis.CSharp": "1.1.0-*",
+    "Microsoft.Dnx.Compilation.CSharp.Abstractions": "1.0.0-*",
+    "CompileInjector":  ""
+  },
+
+  "commands": {
+    "ConsoleApplication": "ConsoleApplication"
+  },
+
+  "frameworks": {
+    "dnx451": {
+      "dependencies": {
+        
+      },
+       "frameworkAssemblies": {
+            "System.Runtime": "4.0.10.0",
+            "System.Threading.Tasks": "4.0.0.0",
+            "System.Text.Encoding": "4.0.0.0"
+        }
+    }
+  }
+}
