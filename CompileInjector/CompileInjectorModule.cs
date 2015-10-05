@@ -71,9 +71,8 @@ namespace CompileInjector
         {
             var root = syntaxTree.GetRoot();
             var classDeclarations = root.DescendantNodes().OfType<ClassDeclarationSyntax>()
-                .Where(node => node.Identifier.ValueText == "Greeter"
-                    || node.Identifier.ValueText == "MessageGreeter");
-            
+                .Where(node => HasAttribute(node));
+                
             foreach(var classDeclaration in classDeclarations)
             {
                 var methods = classDeclaration.DescendantNodes().OfType<MethodDeclarationSyntax>().ToList();
@@ -89,6 +88,19 @@ namespace CompileInjector
             }
 
             return null;
+        }
+
+        private bool HasAttribute(ClassDeclarationSyntax node)
+        {
+            foreach(var attribute in node.AttributeLists.SelectMany(a => a.Attributes))
+            {
+                if(attribute.ToString() == "RegisterService")
+                {
+                    return true;
+                }
+            }
+
+            return false;
         }
 
         private class Node
