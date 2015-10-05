@@ -9,7 +9,9 @@
   "dependencies": {
     "Microsoft.CodeAnalysis.CSharp": "1.1.0-*",
     "Microsoft.Dnx.Compilation.CSharp.Abstractions": "1.0.0-*",
-    "CompileInjector":  ""
+    "CompileInjector": "",
+    "Autofac": "3.5.2",
+    "SimpleInjector": "3.0.6"
   },
 
   "commands": {
@@ -19,13 +21,13 @@
   "frameworks": {
     "dnx451": {
       "dependencies": {
-        
+
       },
-       "frameworkAssemblies": {
-            "System.Runtime": "4.0.10.0",
-            "System.Threading.Tasks": "4.0.0.0",
-            "System.Text.Encoding": "4.0.0.0"
-        }
+      "frameworkAssemblies": {
+        "System.Runtime": "4.0.10.0",
+        "System.Threading.Tasks": "4.0.0.0",
+        "System.Text.Encoding": "4.0.0.0"
+      }
     }
   }
 }
