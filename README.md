@@ -8,11 +8,20 @@ Primarily its a proof of concept using a `ICompileModule` to perform compile tas
 # Build
 
 ```sh
-git clone git@github.com:ChrisSmith/CompileInjector.git
-cd CompileInjector/CompileInjectorTest
-dnu restore
-dnu build
-dnx run
+> git clone git@github.com:ChrisSmith/CompileInjector.git
+> cd CompileInjector/CompileInjectorTest
+> dnu restore
+> dnu build
+> dnx run
+
+Starting CompileInjectorModule
+Done CompileInjectorModule
+Starting sample performance test
+Inlined .NET (base line): 12ms
+Compile Injector (this library): 24ms
+Autofac: 2009ms
+SimpleInjector: 11ms
+Done
 ```
 
 # How it works
