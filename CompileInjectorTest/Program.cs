@@ -2,6 +2,7 @@ using System;
 using CompileInjector;
 using System.Diagnostics;
 using Autofac;
+using System.Runtime;
 
 namespace CompileInjectorTest
 {
@@ -9,6 +10,11 @@ namespace CompileInjectorTest
     {
         public void Main(string[] args)
         {
+            GCSettings.LatencyMode = GCLatencyMode.SustainedLowLatency;
+
+            //Console.WriteLine("ProcessId: " + Process.GetCurrentProcess().Id);
+            //Console.ReadLine();
+
             var simpleInjectorContainer = new SimpleInjector.Container();
             var autofacBuilder = new ContainerBuilder();
 
@@ -25,7 +31,11 @@ namespace CompileInjectorTest
             var container = autofacBuilder.Build();
 
             TimeIt(() => simpleInjectorContainer.GetInstance<ClassWithDeps>(), "SimpleInjector");
+
             TimeIt(() => ClassWithDeps.Factory(), "Roslyn");
+
+            TimeIt(() => ClassWithDeps.MakeClassWithDeps(), "MakeClassWithDeps");
+            
             TimeIt(() => container.Resolve<ClassWithDeps>(), "Autofac");
             
             Console.WriteLine("Done");
@@ -34,6 +44,7 @@ namespace CompileInjectorTest
         private static void TimeIt(Action action, string name)
         {
             action(); // warmup
+            GC.Collect();
 
             var sw = Stopwatch.StartNew();
             for(int i = 0; i < 5000; i++)
