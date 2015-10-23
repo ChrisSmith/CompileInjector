@@ -25,7 +25,7 @@ namespace CompileInjector
 
         public void AfterCompile(AfterCompileContext context)
         {
-            // NoOp
+            Console.WriteLine("Done CompileInjectorModule");
         }
         
         public void BeforeCompile(BeforeCompileContext context)

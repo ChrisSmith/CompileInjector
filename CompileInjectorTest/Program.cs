@@ -11,10 +11,7 @@ namespace CompileInjectorTest
         public void Main(string[] args)
         {
             GCSettings.LatencyMode = GCLatencyMode.SustainedLowLatency;
-
-            //Console.WriteLine("ProcessId: " + Process.GetCurrentProcess().Id);
-            //Console.ReadLine();
-
+            
             var simpleInjectorContainer = new SimpleInjector.Container();
             var autofacBuilder = new ContainerBuilder();
 
@@ -23,20 +20,20 @@ namespace CompileInjectorTest
                 autofacBuilder.RegisterType(type);
                 simpleInjectorContainer.Register(type);
             }
-
-            //builder.Register<ClassWithDeps>((c) => ClassWithDeps.Factory());
-
+            
             simpleInjectorContainer.Verify();
 
             var container = autofacBuilder.Build();
 
-            TimeIt(() => simpleInjectorContainer.GetInstance<ClassWithDeps>(), "SimpleInjector");
+            Console.WriteLine("Starting sample performance test");
 
-            TimeIt(() => ClassWithDeps.Factory(), "Roslyn");
+            TimeIt(() => ClassWithDeps.InlinedConstructor(), "Inlined .NET (base line)");
 
-            TimeIt(() => ClassWithDeps.MakeClassWithDeps(), "MakeClassWithDeps");
-            
+            TimeIt(() => ClassWithDeps.Factory(), "Compile Injector (this library)");
+
             TimeIt(() => container.Resolve<ClassWithDeps>(), "Autofac");
+
+            TimeIt(() => simpleInjectorContainer.GetInstance<ClassWithDeps>(), "SimpleInjector");
             
             Console.WriteLine("Done");
         }

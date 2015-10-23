@@ -7,7 +7,7 @@ namespace CompileInjectorTest
     [RegisterService]
     public class ClassWithDeps
     {
-        public static ClassWithDeps MakeClassWithDeps()
+        public static ClassWithDeps InlinedConstructor()
         {
             return new ClassWithDeps(
                 new NestedClass48(new NestedClass47(new NestedClass46(new NestedClass45(new NestedClass44(new NestedClass43(new NestedClass42(new NestedClass41(new NestedClass40(new NestedClass39(new NestedClass38(new NestedClass37(new NestedClass36(new NestedClass35(new NestedClass34(new NestedClass33(new NestedClass32(new NestedClass31(new NestedClass30(new NestedClass29(new NestedClass28(new NestedClass27(new NestedClass26(new NestedClass25(new NestedClass24(new NestedClass23(new NestedClass22(new NestedClass21(new NestedClass20(new NestedClass19(new NestedClass18(new NestedClass17(new NestedClass16(new NestedClass15(new NestedClass14(new NestedClass13(new NestedClass12(new NestedClass11(new NestedClass10(new NestedClass9(new NestedClass8(new NestedClass7(new NestedClass6(new NestedClass5(new NestedClass4(new NestedClass3(new NestedClass2(new NestedClass1(new NestedClass0())))))))))))))))))))))))))))))))))))))))))))))))),
